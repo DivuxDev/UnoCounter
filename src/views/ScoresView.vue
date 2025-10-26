@@ -1,3 +1,3 @@
 <template>
-    hola
+   scores
 </template>

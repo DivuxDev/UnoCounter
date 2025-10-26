@@ -1,0 +1,17 @@
+.v-btn {
+  // Botón primario
+  &.btn-primary {
+    width: 100%;
+    border-radius: 0.5rem;
+    background-color: var(--color-primary) !important;
+    color: white !important;
+  }
+
+  // Botón secundario
+  &.btn-secondary {
+    width: 100%;
+    border-radius: 0.5rem;
+    background-color: var(--color-text-2) !important;
+    color: white !important;
+  }
+}

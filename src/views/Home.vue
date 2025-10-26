@@ -1,13 +1,11 @@
 <template>
 
     <div class="d-flex flex-column align-center ga-5">
-
-
         <UnoCards />
         <h1>Score UNO</h1>
         <p>La forma más facil de registrar y revivir tus partidas de UNO</p>
         <div class="d-flex flex-column align-center ga-3 responsive-width ">
-            <v-btn class="secondary-button button" >
+            <v-btn class="btn-secondary button" >
                 Nueva partida
             </v-btn>
 
@@ -27,12 +25,6 @@ import UnoCards from '@/components/UnoCards.vue';
 .button {
     width: 100%;
 }
-
-.secondary-button {
-    background-color: var(--color-text-2);
-    color: white;
-}
-
 .responsive-width {
     width: 100%;
 }

@@ -10,15 +10,20 @@ import '@fontsource/roboto/700.css'
 import '@fontsource/roboto/900.css'
 
 import '@/variables.css'
+import '@/styles/buttons.scss'
 
 import 'vuetify/styles'
 
 import App from './App.vue'
 import router from './router'
 
+import VuetifyNotifier from "vuetify-notifier";
 
-const app =createApp(App).use(vuetify)
+const app = createApp(App)
 
+app.use(vuetify)
+app.use(VuetifyNotifier
+)
 app.use(createPinia())
 app.use(router)
 
