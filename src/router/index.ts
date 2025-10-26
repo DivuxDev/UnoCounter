@@ -15,19 +15,18 @@ const router = createRouter({
       path: "/players",
       name: "players",
       component: () => import("@/views/PlayersView.vue"),
-      meta: { navbarTitle: "Players" },
+      meta: { navbarTitle: "Jugadores" },
     },
     {
       path: "/scores",
       name: "scores",
-      component: () => import("@/views/ScoresView.vue"),
-      meta: { navbarTitle: "Scores" },
+      component: () => import("@/views/ScoresView.vue")
     },
     {
       path: "/results",
       name: "results",
-      component: () => import("@/views/Home.vue"),
-      meta: { navbarTitle: "Results" },
+      component: () => import("@/views/ResultsView.vue"),
+      meta: { navbarTitle: "Partida en curso" },
     },
   ],
 });

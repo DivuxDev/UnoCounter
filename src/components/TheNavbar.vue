@@ -40,6 +40,8 @@ function openMenu() {
     height: var(--navbar-height);
     padding: 0 0.5rem; 
     z-index: 1300; 
+    background-color: #FEFFFE  ;
+    border-bottom: 1px solid var(--color-bg-3);
 }
 .navbar div {
     width: 33%;

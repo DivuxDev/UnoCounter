@@ -2,7 +2,7 @@
     <div class="player-card">
         <section class="d-flex align-center ga-2 w-100" >
             <v-avatar :style="{ backgroundColor: player.color }">
-                <span class="text-h5">{{ player.initials }}</span>
+                <span class="text-h6">{{ player.initials }}</span>
             </v-avatar>
             <div class="player-name">
 

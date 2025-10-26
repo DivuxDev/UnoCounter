@@ -14,11 +14,13 @@
     "type-check": "vue-tsc --build",
     "lint:oxlint": "oxlint . --fix -D correctness --ignore-path .gitignore",
     "lint:eslint": "eslint . --fix",
-    "lint": "run-s lint:*"
+    "lint": "run-s lint:*",
+    "server": "json-server --watch db.json --port 3001"
   },
   "dependencies": {
     "@fontsource/roboto": "^5.2.8",
     "@vueuse/core": "^14.0.0",
+    "chart.js": "^4.5.1",
     "motion-v": "^1.7.4",
     "motion-vue": "^0.0.1",
     "pinia": "^3.0.3",
@@ -38,6 +40,7 @@
     "eslint-plugin-oxlint": "~1.11.0",
     "eslint-plugin-vue": "~10.4.0",
     "jiti": "^2.5.1",
+    "json-server": "^1.0.0-beta.3",
     "npm-run-all2": "^8.0.4",
     "oxlint": "~1.11.0",
     "sass-embedded": "^1.93.2",
