@@ -1,6 +1,6 @@
 <template>
-    <div class="navbar">
-        <div class="left-buttons">
+    <div class="navbar parent">
+        <div class="div1">
             <v-btn v-if="commonStore.hasGoBack" icon="mdi-arrow-left" variant="text" @click="goHome()"></v-btn>
             <v-btn v-if="commonStore.hasMenu" icon="mdi-menu" variant="text" @click="openMenu()"></v-btn>
 
@@ -10,7 +10,7 @@
                 {{ commonStore.navbarTitle === '' ? 'Uno Counter' : commonStore.navbarTitle }}
             </h3>
         </div>
-        <div class="navbar-right-buttons">
+        <div class="div3">
 
         </div>
     </div>
@@ -34,19 +34,26 @@ function openMenu() {
 <style lang="css" scoped>
 .navbar {
     --navbar-height: 56px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center; 
+
     height: var(--navbar-height);
     padding: 0 0.5rem; 
     z-index: 1300; 
     background-color: #FEFFFE  ;
     border-bottom: 1px solid var(--color-bg-3);
 }
-.navbar div {
-    width: 33%;
+.parent {
+display: grid;
+grid-template-columns: 0.2fr 1fr 0.2fr;
+grid-template-rows: 1fr;
+grid-column-gap: 0px;
+grid-row-gap: 0px;
 }
+
+.div1 { grid-area: 1 / 1 / 2 / 2; }
+
+.div3 { grid-area: 1 / 3 / 2 / 4; }
 .middle {
+    grid-area: 1 / 2 / 2 / 3;
     display: flex;
     justify-content: center;
     align-self: center;

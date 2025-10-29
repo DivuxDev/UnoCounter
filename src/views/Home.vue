@@ -1,37 +1,65 @@
 <template>
-
-    <div class="d-flex flex-column align-center ga-5">
-        <UnoCards />
-        <h1>Score UNO</h1>
-        <p>La forma más facil de registrar y revivir tus partidas de UNO</p>
-        <div class="d-flex flex-column align-center ga-3 responsive-width ">
-            <v-btn class="btn-secondary button" >
-                Nueva partida
-            </v-btn>
-
-            <v-btn variant="tonal" class="button">
-                Ver partidas
-            </v-btn>
-
-        </div>
+  <div class="home">
+    <div class="card-holder">
+      <UnoCards />
     </div>
+
+    <h1>Score UNO</h1>
+    <p>La forma más fácil de registrar y revivir tus partidas de UNO</p>
+
+    <div class="buttons">
+      <v-btn class="btn-secondary button" @click="router.push('/scores')">
+        Nueva partida
+      </v-btn>
+
+      <v-btn variant="tonal" class="button" @click="router.push('/results')">
+        Ver partida en curso
+      </v-btn>
+    </div>
+  </div>
 </template>
+
 <script lang="ts" setup>
-import UnoCards from '@/components/UnoCards.vue'; 
+import UnoCards from '@/components/UnoCards.vue';
+import { useRouter } from 'vue-router';
+const router = useRouter();
 </script>
 
-<style lang="css" scoped>
+<style scoped>
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%; /* ocupa todo el main-content */
+  width: 100%;
+  gap: 1.5rem;
+  text-align: center;
+  overflow: hidden; /* 🔸 sin scroll */
+}
+
+.card-holder {
+  flex: 0 0 auto;
+  width: clamp(200px, 40vw, 350px); /* 🔸 tamaño adaptable */
+  height: auto;
+}
 
 .button {
-    width: 100%;
+  width: 100%;
+  max-width: 250px;
 }
-.responsive-width {
-    width: 100%;
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
 }
 
 @media (min-width: 960px) {
-    .responsive-width {
-        width: 33%;
-    }
+  .buttons {
+    width: 33%;
+  }
 }
 </style>

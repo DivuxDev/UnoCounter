@@ -267,15 +267,8 @@ const additionalStats = computed(() => players.value.length > 0);
 .results-container {
     max-width: 1200px;
     margin: 0 auto;
-    background-color: var(--color-bg);
-    
-    :deep(.main-content) {
-        background-color: var(--color-bg);
-    }
 
-    .main-content{
-        background-color: var(--color-bg);
-    }
+  
 }
 
 .leader-card {
