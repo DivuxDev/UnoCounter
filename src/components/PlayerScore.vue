@@ -71,7 +71,7 @@ const playerScore = computed({
 }
 
 .score-section {
-    width: 43%;
+    width: 63%;
     display: flex;
     align-items: center;
 }
