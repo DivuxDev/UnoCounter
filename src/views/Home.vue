@@ -8,7 +8,7 @@
     <p>La forma más fácil de registrar y revivir tus partidas de UNO</p>
 
     <div class="buttons">
-      <v-btn class="btn-secondary button" @click="router.push('/scores')">
+      <v-btn class="btn-secondary button" :disabled="counterStore.$state.round>0"  @click="router.push('/scores')">
         Nueva partida
       </v-btn>
 
@@ -23,6 +23,12 @@
 import UnoCards from '@/components/UnoCards.vue';
 import { useRouter } from 'vue-router';
 const router = useRouter();
+
+import{ useCounterStore }from '@/stores/Counter';
+import { onMounted } from 'vue';
+
+const counterStore = useCounterStore();
+
 </script>
 
 <style scoped>

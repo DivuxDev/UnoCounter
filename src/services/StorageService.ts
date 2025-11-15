@@ -2,12 +2,79 @@ import type Player from '@/models/Player';
 import type Score from '@/models/Score';
 
 const API_URL = import.meta.env.VITE_API_URL;
+const TIMEOUT_MS = 5000; // 5 segundos de timeout
+const MAX_RETRIES = 3;   // Número máximo de reintentos
+const RETRY_DELAY = 1000; // 1 segundo entre reintentos
+
+// Función para hacer fetch con timeout
+const fetchWithTimeout = async (url: string, options: RequestInit = {}): Promise<Response> => {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), TIMEOUT_MS);
+
+    try {
+        const response = await fetch(url, {
+            ...options,
+            signal: controller.signal
+        });
+        clearTimeout(timeoutId);
+        return response;
+    } catch (error) {
+        clearTimeout(timeoutId);
+        throw error;
+    }
+};
+
+// Función para hacer fetch con reintentos
+const fetchWithRetry = async (url: string, options: RequestInit = {}): Promise<Response> => {
+    let lastError: Error | null = null;
+    
+    for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
+        try {
+            const response = await fetchWithTimeout(url, options);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response;
+        } catch (error) {
+            lastError = error as Error;
+            if (error instanceof Error && error.name === 'AbortError') {
+                console.warn(`Request timeout on attempt ${attempt + 1}`);
+            } else {
+                console.warn(`Request failed on attempt ${attempt + 1}:`, error);
+            }
+            if (attempt < MAX_RETRIES - 1) {
+                await new Promise(resolve => setTimeout(resolve, RETRY_DELAY));
+            }
+        }
+    }
+    
+    throw lastError || new Error('Request failed after max retries');
+};
+
+// Cache para almacenar las respuestas temporalmente
+const cache = new Map<string, { data: any; timestamp: number }>();
+const CACHE_DURATION = 60000; // 1 minuto
 
 export const StorageService = {
     // Player operations
     async getPlayers(): Promise<Player[]> {
-        const response = await fetch(`${API_URL}/players`);
+        const cacheKey = 'players';
+        const cached = cache.get(cacheKey);
+        
+        // Si hay datos en caché y no han expirado, usarlos
+        if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
+            return cached.data;
+        }
+
+        const response = await fetchWithRetry(`${API_URL}/players`);
         const data = await response.json();
+        
+        // Guardar en caché
+        cache.set(cacheKey, {
+            data,
+            timestamp: Date.now()
+        });
+
         return data;
     },
 
@@ -28,7 +95,6 @@ export const StorageService = {
                 totalScore: totalScore
             };
         });
-            console.log(playersWithTotals);
         return playersWithTotals;
     },
 

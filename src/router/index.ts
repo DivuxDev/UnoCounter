@@ -13,18 +13,18 @@ const router = createRouter({
     },
     {
       path: "/players",
-      name: "players",
+      name: "Jugadpres",
       component: () => import("@/views/PlayersView.vue"),
       meta: { navbarTitle: "Jugadores" },
     },
     {
       path: "/scores",
-      name: "scores",
+      name: "Puntuaciones",
       component: () => import("@/views/ScoresView.vue")
     },
     {
       path: "/results",
-      name: "results",
+      name: "Resultados",
       component: () => import("@/views/ResultsView.vue"),
       meta: { navbarTitle: "Partida en curso" },
     },

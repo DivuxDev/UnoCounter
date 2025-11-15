@@ -17,13 +17,13 @@ function goTo(path: string) {
 			<nav>
 				<ul>
 					<li>
-						<button class="nav-btn" @click="goTo('/players')">Players</button>
+						<button class="nav-btn" @click="goTo('/players')">Jugadores</button>
 					</li>
 					<li>
-						<button class="nav-btn" @click="goTo('/scores')">Scores</button>
+						<button class="nav-btn" @click="goTo('/scores')">Puntuaciones</button>
 					</li>
 					<li>
-						<button class="nav-btn" @click="goTo('/results')">Results</button>
+						<button class="nav-btn" @click="goTo('/results')">Resultados</button>
 					</li>
 				</ul>
 			</nav>

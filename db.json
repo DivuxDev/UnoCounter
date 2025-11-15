@@ -1,20 +1,51 @@
 {
   "players": [
     {
-      "id": "e9662ef4-f5a8-4ed0-999c-850b0332ee1f",
-      "name": "test uno",
-      "initials": "TU",
-      "color": "#2e6cbd"
-    },
-    {
       "id": "ecbd1180-02bc-4372-9dba-86e966a6709a",
       "name": "test",
       "initials": "T",
       "color": "#352d72"
+    },
+    {
+      "id": "8e56c324-1683-48de-88bf-15cfccd213f7",
+      "name": "test a",
+      "initials": "TA",
+      "color": "#36b363"
     }
   ],
-  "scores": [],
+  "scores": [
+    {
+      "id": "d7804a14-630c-43eb-9375-adeee0e20a91",
+      "userId": "ecbd1180-02bc-4372-9dba-86e966a6709a",
+      "round": 0,
+      "value": 3
+    },
+    {
+      "id": "7f78737f-8253-4faa-9d21-fe53c75e3758",
+      "userId": "ecbd1180-02bc-4372-9dba-86e966a6709a",
+      "round": 1,
+      "value": 4
+    },
+    {
+      "id": "d997dd99-0c15-4569-8373-3a3429e5c9fa",
+      "userId": "ecbd1180-02bc-4372-9dba-86e966a6709a",
+      "round": 2,
+      "value": 6
+    },
+    {
+      "id": "e86b34ab-f7b3-494d-97eb-b5ca09780730",
+      "userId": "ecbd1180-02bc-4372-9dba-86e966a6709a",
+      "round": 3,
+      "value": 0
+    },
+    {
+      "id": "1bc2e782-aebb-4364-af6e-e7d4c167caf5",
+      "userId": "8e56c324-1683-48de-88bf-15cfccd213f7",
+      "round": 3,
+      "value": 7
+    }
+  ],
   "gameState": {
-    "round": 0
+    "round": 4
   }
 }
