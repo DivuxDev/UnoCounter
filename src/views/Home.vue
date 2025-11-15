@@ -24,7 +24,7 @@ import UnoCards from '@/components/UnoCards.vue';
 import { useRouter } from 'vue-router';
 const router = useRouter();
 
-import{ useCounterStore }from '@/stores/Counter';
+import{ useCounterStore }from '@/stores/Counter.ts';
 import { onMounted } from 'vue';
 
 const counterStore = useCounterStore();

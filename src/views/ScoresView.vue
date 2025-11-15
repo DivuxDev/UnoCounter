@@ -34,7 +34,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useCounterStore } from '@/stores/Counter';
+import { useCounterStore } from '@/stores/Counter.ts';
 import { useCommonStore } from '@/stores/Common';
 import { computed, ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';

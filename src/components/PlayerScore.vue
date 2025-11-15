@@ -21,7 +21,7 @@
 </template>
 <script lang="ts" setup>
 import Player from '@/models/Player';
-import { useCounterStore } from '@/stores/Counter';
+import { useCounterStore } from '@/stores/Counter.ts';
 import { computed } from 'vue';
 
 const counterStore = useCounterStore();

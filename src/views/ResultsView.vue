@@ -113,7 +113,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useCounterStore } from '@/stores/Counter';
+import { useCounterStore } from '@/stores/Counter.ts';
 import { computed, onMounted, ref, watch } from 'vue';
 import { Chart, registerables } from 'chart.js';
 

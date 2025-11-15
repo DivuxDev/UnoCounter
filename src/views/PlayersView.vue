@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useCounterStore } from '@/stores/Counter';
+import { useCounterStore } from '@/stores/Counter.ts';
 import { ref, computed, onMounted } from 'vue';
 import PlayerCard from '@/components/PlayerCard.vue';
 import {useRouter} from "vue-router";
