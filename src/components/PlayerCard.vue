@@ -60,7 +60,7 @@
 </template>
 <script lang="ts" setup>
 import type Player from '@/models/Player';
-import { useCounterStore } from '@/stores/Counter.ts';
+import { useCounterStore } from '@/stores/Counter';
 import { ref } from 'vue';
 
 const counterStore = useCounterStore();
