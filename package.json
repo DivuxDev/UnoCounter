@@ -21,6 +21,7 @@
     "@fontsource/roboto": "^5.2.8",
     "@vueuse/core": "^14.0.0",
     "chart.js": "^4.5.1",
+    "express": "^4.18.0",
     "motion-v": "^1.7.4",
     "motion-vue": "^0.0.1",
     "pinia": "^3.0.3",
