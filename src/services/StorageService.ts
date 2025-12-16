@@ -1,7 +1,7 @@
 import type Player from '@/models/Player';
 import type Score from '@/models/Score';
 
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = process.env.DB_SERVER || import.meta.env.VITE_API_URL || 'http://localhost:3000';
 const TIMEOUT_MS = 5000; // 5 segundos de timeout
 const MAX_RETRIES = 3;   // Número máximo de reintentos
 const RETRY_DELAY = 1000; // 1 segundo entre reintentos
