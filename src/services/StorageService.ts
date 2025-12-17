@@ -5,7 +5,10 @@ const API_URL = process.env.DB_SERVER || import.meta.env.VITE_API_URL || 'http:/
 const TIMEOUT_MS = 5000; // 5 segundos de timeout
 const MAX_RETRIES = 3;   // Número máximo de reintentos
 const RETRY_DELAY = 1000; // 1 segundo entre reintentos
-
+// Para debugging - ver qué URL se está usando
+console.log('API_URL:', API_URL);
+console.log('VITE_API_URL env:', import.meta.env.VITE_API_URL);
+console.log('DB_SERVER env:', process.env.DB_SERVER);
 // Función para hacer fetch con timeout
 const fetchWithTimeout = async (url: string, options: RequestInit = {}): Promise<Response> => {
     const controller = new AbortController();
