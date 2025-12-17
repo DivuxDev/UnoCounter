@@ -20,8 +20,9 @@
             <li v-for="player in players" :key="player.id">
                 <playerCard :player="player" />
             </li>
+            <p v-if=" players.length < 1">No hay jugadores aún, añade un jugador para continuar.</p>
         </ul>
-        <v-btn class="btn-primary" @click="() => { router.push('scores') }">¡Empezar partida!</v-btn>
+        <v-btn class="btn-primary" :disabled="players.length < 1" @click="() => { router.push('scores') }"> {{ counterStore.round > 0 ? 'Ver Puntuaciones' : '¡Empezar partida!'}} </v-btn>
     </div>
 </template>
 
@@ -33,6 +34,8 @@ import {useRouter} from "vue-router";
 
 const router = useRouter();
 const counterStore = useCounterStore();
+
+counterStore.round 
 
 const newPlayerName = ref('');
 const players = computed(() => counterStore.players);
@@ -70,10 +73,12 @@ const addPlayer = () => {
 }
 
 .player-list {
+    border: 1px solid var(--color-bg-3);
+    border-radius: 15px;
     min-height: 50vh;
     height: 50vh;
     list-style: none;
-    padding: 0;
+    padding: 15px;
     margin: 0;
     overflow-y: auto;
 }

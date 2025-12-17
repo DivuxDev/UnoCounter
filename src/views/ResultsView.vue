@@ -1,114 +1,68 @@
 <template>
-    <div class="results-container">
+    <div class="results-container" v-if="counterStore.round > 0">
+
         <!-- Partida en Curso - Líder Actual -->
         <v-card class="leader-card mb-4" elevation="4">
             <v-card-title class="d-flex align-center justify-space-between">
-                <span class="text-h6">Partida en Curso</span>
-                <v-icon>mdi-trophy</v-icon>
+                <span class="text-h6">Lider actual</span>
             </v-card-title>
             <v-card-text>
-                <div class="d-flex align-center ga-4">
-                    <v-avatar :size="80" :style="{ backgroundColor: currentLeader?.color }">
-                        <span class="text-h4 text-white">{{ currentLeader?.initials }}</span>
-                    </v-avatar>
+                <div class="d-flex align-center ga-4 justify-space-between">
+
                     <div>
-                        <div class="text-subtitle-2 text-grey">Líder Actual</div>
-                        <div class="text-h5 font-weight-bold">{{ currentLeader?.name }}</div>
-                        <div class="text-h6 text-primary">{{ currentLeader?.totalScore }} Puntos</div>
+                        <div class="text-h4 font-weight-bold">{{ currentLeader?.name }}</div>
+                        <div class="text">{{ currentLeader?.totalScore }} Puntos</div>
                     </div>
+                    <v-avatar :size="80" :style="{ backgroundColor: currentLeader?.color }">
+                        <span class="text-h text-white">{{ currentLeader?.initials }}</span>
+                    </v-avatar>
                 </div>
             </v-card-text>
         </v-card>
 
         <!-- Tabla de Clasificación -->
-        <v-card class="leaderboard-card mb-4" elevation="4">
-            <v-card-title class="d-flex align-center ga-2">
-                <v-icon>mdi-podium</v-icon>
-                <span class="text-h6">Tabla de Clasificación</span>
-            </v-card-title>
-            <v-card-text>
-                <div class="leaderboard-list">
-                    <div 
-                        v-for="(player, index) in sortedPlayers" 
-                        :key="player.id" 
-                        class="leaderboard-item d-flex align-center ga-3 pa-3 mb-2"
-                        :class="getRankClass(index)"
-                    >
-                        <div class="rank-badge">{{ index + 1 }}</div>
-                        <v-avatar :size="50" :style="{ backgroundColor: player.color }">
-                            <span class="text-h6 text-white">{{ player.initials }}</span>
-                        </v-avatar>
-                        <div class="flex-grow-1">
-                            <div class="font-weight-bold">{{ player.name }}</div>
-                            <div class="text-subtitle-2 text-grey">{{ player.totalScore }} puntos</div>
-                        </div>
-                        <div class="position-change" v-if="previousRanking[player.id]">
-                            <v-icon 
-                                :color="getPositionChange(player.id, index) === 'up' ? 'success' : 'error'"
-                                size="small"
-                            >
-                                {{ getPositionChange(player.id, index) === 'up' ? 'mdi-trending-up' : 'mdi-trending-down' }}
-                            </v-icon>
-                        </div>
-                    </div>
+        <span class="text-h6">Tabla de Clasificación</span>
+        <div class="mb-4" elevation="4" v-for="(player, index) in sortedPlayers" :key="player.id">
+
+            <div class="leaderboard-item bg-default d-flex align-center ga-3 pa-3 mb-2">
+                <div class="rank-badge">{{ index + 1 }}</div>
+                <v-avatar :size="50" :style="{ backgroundColor: player.color }">
+                    <span class="text-h6 text-white">{{ player.initials }}</span>
+                </v-avatar>
+                <div class="flex-grow-1">
+                    <div class="font-weight-bold">{{ player.name }}</div>
+                    <div class="text-subtitle-2 text-grey">{{ player.totalScore }} puntos</div>
                 </div>
-            </v-card-text>
-        </v-card>
+                <div class="position-change" v-if="previousRanking[player.id]">
+                    <v-icon :color="getPositionChange(player.id, index) === 'up' ? 'success' : 'error'" size="small">
+                        {{ getPositionChange(player.id, index) === 'up' ? 'mdi-trending-up' :
+                            'mdi-trending-down' }}
+                    </v-icon>
+                </div>
+            </div>
+
+        </div>
 
         <!-- Progresión de Puntuaciones -->
+        <span class="text-h6">Progresión de Puntuaciones</span>
         <v-card class="chart-card" elevation="4">
-            <v-card-title class="d-flex align-center ga-2">
-                <v-icon>mdi-chart-line</v-icon>
-                <span class="text-h6">Progresión de Puntuaciones</span>
-            </v-card-title>
+
             <v-card-text>
                 <canvas ref="chartCanvas"></canvas>
-                <div class="legend-container mt-4">
-                    <div 
-                        v-for="player in sortedPlayers" 
-                        :key="player.id"
-                        class="legend-item d-flex align-center ga-2"
-                    >
-                        <div 
-                            class="legend-color" 
-                            :style="{ backgroundColor: getPlayerColor(player.id) }"
-                        ></div>
-                        <span class="text-body-2">{{ player.name }}</span>
-                    </div>
-                </div>
+
+
             </v-card-text>
         </v-card>
+    </div>
+    <div v-else class="no-matches">
+        <p class="bold-text"> Sin partida activa</p>
+        <p>
+            Parece que no hay ninguna partida de UNO en curso, ¿Listo para romper algunas amistades?
+        </p>
 
-        <!-- Estadísticas Adicionales -->
-        <v-row class="mt-4" v-if="additionalStats">
-            <v-col cols="12" md="4">
-                <v-card elevation="2">
-                    <v-card-text class="text-center">
-                        <v-icon color="primary" size="48">mdi el-games</v-icon>
-                        <div class="text-h5 mt-2">{{ totalRounds }}</div>
-                        <div class="text-subtitle-2">Rondas Jugadas</div>
-                    </v-card-text>
-                </v-card>
-            </v-col>
-            <v-col cols="12" md="4">
-                <v-card elevation="2">
-                    <v-card-text class="text-center">
-                        <v-icon color="success" size="48">mdi-account-group</v-icon>
-                        <div class="text-h5 mt-2">{{ players.length }}</div>
-                        <div class="text-subtitle-2">Jugadores</div>
-                    </v-card-text>
-                </v-card>
-            </v-col>
-            <v-col cols="12" md="4">
-                <v-card elevation="2">
-                    <v-card-text class="text-center">
-                        <v-icon color="warning" size="48">mdi-target</v-icon>
-                        <div class="text-h5 mt-2">{{ averageScore }}</div>
-                        <div class="text-subtitle-2">Puntos Promedio</div>
-                    </v-card-text>
-                </v-card>
-            </v-col>
-        </v-row>
+        <v-btn class="btn-secondary" :disabled="counterStore.$state.round > 0" @click="router.push('/players')">
+            Nueva partida
+        </v-btn>
     </div>
 </template>
 
@@ -116,7 +70,8 @@
 import { useCounterStore } from '@/stores/Counter';
 import { computed, onMounted, ref, watch } from 'vue';
 import { Chart, registerables } from 'chart.js';
-
+import { useRouter } from 'vue-router';
+const router = useRouter();
 Chart.register(...registerables);
 
 const counterStore = useCounterStore();
@@ -133,23 +88,7 @@ const sortedPlayers = computed(() => {
 
 const currentLeader = computed(() => sortedPlayers.value[0]);
 
-const totalRounds = computed(() => round.value);
 
-const averageScore = computed(() => {
-    if (players.value.length === 0) return 0;
-    const total = players.value.reduce((sum, p) => sum + (p.totalScore || 0), 0);
-    return Math.round(total / players.value.length);
-});
-
-// Función para obtener la clase CSS según la posición
-const getRankClass = (index: number): string => {
-    switch (index) {
-        case 0: return 'bg-gold';
-        case 1: return 'bg-silver';
-        case 2: return 'bg-bronze';
-        default: return 'bg-default';
-    }
-};
 
 // Función para obtener el cambio de posición
 const getPositionChange = (playerId: string, currentIndex: number): 'up' | 'down' | null => {
@@ -183,7 +122,7 @@ const createChart = () => {
     const datasets = sortedPlayers.value.map(player => {
         const data = [];
         let cumulativeScore = 0;
-        
+
         for (let r = 0; r <= maxRound; r++) {
             const roundScores = counterStore.scores.filter(s => s.userId === player.id && s.round === r);
             if (roundScores.length > 0) {
@@ -214,12 +153,29 @@ const createChart = () => {
             maintainAspectRatio: false,
             plugins: {
                 legend: {
-                    display: false,
+                    display: true,
+                    labels: {
+                        color: '#ffffff',
+                        usePointStyle: false,
+                        generateLabels(chart) {
+                            return chart.data.datasets.map((dataset, i) => ({
+                                text: dataset.label || '',
+                                fillStyle: String(dataset.borderColor), // Cast to string
+                                strokeStyle: String(dataset.borderColor), // Cast to string
+                                fontColor: '#ffffff',
+                                lineWidth: 2,
+                                hidden: !chart.isDatasetVisible(i),
+                                datasetIndex: i,
+                                pointStyle: 'circle'
+                            }));
+                        }
+                    }
                 },
                 tooltip: {
                     mode: 'index',
                     intersect: false,
                 },
+
             },
             scales: {
                 y: {
@@ -265,16 +221,30 @@ const additionalStats = computed(() => players.value.length > 0);
 
 <style lang="scss" scoped>
 .results-container {
-  max-width: 1200px;
-  margin: 0 auto;
- 
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
- 
+.bold-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.no-matches {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: var(--color-text-secondary);
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    gap: 1rem;
 }
 
 .leader-card {
     background: var(--color-bg-2);
     color: white;
+    border-radius: 1rem;
 
     :deep(.v-card-title),
     :deep(.v-card-text) {
@@ -298,18 +268,11 @@ const additionalStats = computed(() => players.value.length > 0);
     }
 }
 
-.bg-gold {
-background-color: var(--color-bg) !important;    color: white;
-}
 
-.bg-silver {
-background-color: var(--color-bg) !important; color: white}
-
-.bg-bronze {
-background-color: var(--color-bg) !important;}
 
 .bg-default {
-    background-color: #f5f5f5;
+    background-color: var(--color-bg-2) !important;
+    color: white;
 }
 
 .rank-badge {
@@ -344,6 +307,8 @@ background-color: var(--color-bg) !important;}
 }
 
 .chart-card {
+    background-color: var(--color-bg-2);
+
     :deep(canvas) {
         max-height: 400px;
     }

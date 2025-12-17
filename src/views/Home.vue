@@ -8,11 +8,11 @@
     <p>La forma más fácil de registrar y revivir tus partidas de UNO</p>
 
     <div class="buttons">
-      <v-btn class="btn-secondary button" :disabled="counterStore.$state.round>0"  @click="router.push('/scores')">
+      <v-btn class="btn-secondary button" :disabled="counterStore.$state.round>0"  @click="router.push('/players')">
         Nueva partida
       </v-btn>
 
-      <v-btn variant="tonal" class="button" @click="router.push('/results')">
+      <v-btn v-if="counterStore.round > 0" variant="tonal" class="button" @click="router.push('/results')">
         Ver partida en curso
       </v-btn>
     </div>
@@ -25,7 +25,6 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 
 import{ useCounterStore }from '@/stores/Counter.ts';
-import { onMounted } from 'vue';
 
 const counterStore = useCounterStore();
 

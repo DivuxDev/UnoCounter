@@ -6,9 +6,10 @@
             <li v-for="player in players" :key="player.id">
                 <playerScore :player="player" />
             </li>
+             <p v-if="players.length < 1">No hay jugadores aún, añade un jugador para continuar.</p>
         </ul>
-        <v-btn class="btn-primary" @click="saveAndAdvance">¡Guardar y siguiente ronda!</v-btn>
-        <v-btn variant="tonal" @click="showConfirmDialog = true">Finalizar partida</v-btn>
+        <v-btn class="btn-primary" @click="saveAndAdvance" :disabled="players.length < 1">¡Guardar y siguiente ronda!</v-btn>
+        <v-btn variant="tonal" v-if="counterStore.round >0" @click="showConfirmDialog = true">Finalizar partida</v-btn>
 
   
         <v-dialog v-model="showConfirmDialog" max-width="400">
@@ -85,10 +86,12 @@ const resetGame = async () => {
 }
 
 .player-list {
+    border: 1px solid var(--color-bg-3);
+    border-radius: 15px;
     min-height: 65vh;
     height: 65vh;
     list-style: none;
-    padding: 0;
+    padding: 15px;
     margin: 0;
     overflow-y: auto;
 }

@@ -55,7 +55,7 @@ export const useCounterStore = defineStore("counter", () => {
       players.value = players.value.filter((player) => player.id !== id);
       notifier.toast({
         text: "Usuario eliminado correctamente!!",
-        type: "error",
+        type: "success",
       });
     } catch (error) {
       notifier.toast({

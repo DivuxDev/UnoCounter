@@ -1,48 +1,156 @@
 {
   "players": [
     {
-      "id": "ecbd1180-02bc-4372-9dba-86e966a6709a",
       "name": "test",
+      "id": "4d79746c-7734-4d4f-bd8a-8066a75db896",
       "initials": "T",
-      "color": "#352d72"
+      "color": "#9f3ad7"
     },
     {
-      "id": "8e56c324-1683-48de-88bf-15cfccd213f7",
-      "name": "test a",
-      "initials": "TA",
-      "color": "#36b363"
+      "name": "pedro",
+      "id": "4b212b4e-244b-42db-b72b-8f7e83960371",
+      "initials": "P",
+      "color": "#d55992"
+    },
+    {
+      "name": "pablo",
+      "id": "4674e969-00de-45d5-8a62-449db9d717ff",
+      "initials": "P",
+      "color": "#b3b0e3"
+    },
+    {
+      "name": "jesus",
+      "id": "b1d930f6-c8a7-4b8a-a46a-4c326a82fb51",
+      "initials": "J",
+      "color": "#d8ecea"
     }
   ],
   "scores": [
     {
-      "id": "d7804a14-630c-43eb-9375-adeee0e20a91",
-      "userId": "ecbd1180-02bc-4372-9dba-86e966a6709a",
+      "id": "12a7924c-9ede-44e5-8ee4-82de6121d757",
+      "userId": "4d79746c-7734-4d4f-bd8a-8066a75db896",
       "round": 0,
+      "value": 0
+    },
+    {
+      "id": "cda58d2e-26ef-47ea-babc-91515c6d2b46",
+      "userId": "4d79746c-7734-4d4f-bd8a-8066a75db896",
+      "round": 1,
+      "value": 2
+    },
+    {
+      "id": "52d4040f-6420-4398-ae22-e4ab617ab96b",
+      "userId": "4b212b4e-244b-42db-b72b-8f7e83960371",
+      "round": 1,
+      "value": 2
+    },
+    {
+      "id": "9f6b6232-3b5e-404e-b8ca-1472d62e8e68",
+      "userId": "4674e969-00de-45d5-8a62-449db9d717ff",
+      "round": 1,
+      "value": 2
+    },
+    {
+      "id": "92d833b5-d3ef-4832-8fdf-21f6aadd3550",
+      "userId": "b1d930f6-c8a7-4b8a-a46a-4c326a82fb51",
+      "round": 1,
+      "value": 2
+    },
+    {
+      "id": "c9b518ce-f2a4-417b-80ee-216b7a8c49ca",
+      "userId": "4d79746c-7734-4d4f-bd8a-8066a75db896",
+      "round": 1,
+      "value": 2
+    },
+    {
+      "id": "32943c33-0c40-4fba-8fd2-08dad0b4df35",
+      "userId": "4b212b4e-244b-42db-b72b-8f7e83960371",
+      "round": 1,
+      "value": 2
+    },
+    {
+      "id": "fb616be4-763d-474f-8b98-bfba59e756a2",
+      "userId": "4674e969-00de-45d5-8a62-449db9d717ff",
+      "round": 1,
+      "value": 2
+    },
+    {
+      "id": "46eec70c-e7ce-4b83-9e30-68a4fad0da67",
+      "userId": "b1d930f6-c8a7-4b8a-a46a-4c326a82fb51",
+      "round": 1,
+      "value": 2
+    },
+    {
+      "id": "37a8621c-db4c-4097-bdd4-c39aa9f013d9",
+      "userId": "4d79746c-7734-4d4f-bd8a-8066a75db896",
+      "round": 2,
+      "value": 0
+    },
+    {
+      "id": "ddc9bc7c-783c-48fa-a90e-a3440efd07e9",
+      "userId": "4b212b4e-244b-42db-b72b-8f7e83960371",
+      "round": 2,
+      "value": 12
+    },
+    {
+      "id": "71b20aef-90e1-4d4c-bd3d-c858eb1c9d6c",
+      "userId": "4674e969-00de-45d5-8a62-449db9d717ff",
+      "round": 2,
+      "value": 0
+    },
+    {
+      "id": "7c2d00b3-1653-4506-8e8d-1a74c95c8085",
+      "userId": "b1d930f6-c8a7-4b8a-a46a-4c326a82fb51",
+      "round": 2,
       "value": 3
     },
     {
-      "id": "7f78737f-8253-4faa-9d21-fe53c75e3758",
-      "userId": "ecbd1180-02bc-4372-9dba-86e966a6709a",
-      "round": 1,
-      "value": 4
-    },
-    {
-      "id": "d997dd99-0c15-4569-8373-3a3429e5c9fa",
-      "userId": "ecbd1180-02bc-4372-9dba-86e966a6709a",
+      "id": "2559a8e9-b31f-4b16-b35e-906acb522fa3",
+      "userId": "4d79746c-7734-4d4f-bd8a-8066a75db896",
       "round": 2,
-      "value": 6
+      "value": 0
     },
     {
-      "id": "e86b34ab-f7b3-494d-97eb-b5ca09780730",
-      "userId": "ecbd1180-02bc-4372-9dba-86e966a6709a",
+      "id": "e75f5d56-450b-4357-8e63-487e66eb13e3",
+      "userId": "4b212b4e-244b-42db-b72b-8f7e83960371",
+      "round": 2,
+      "value": 12
+    },
+    {
+      "id": "7d465643-1d7f-4bde-ad77-fda41003f862",
+      "userId": "4674e969-00de-45d5-8a62-449db9d717ff",
+      "round": 2,
+      "value": 0
+    },
+    {
+      "id": "1a35eee5-5b69-43e2-953c-4854130f4315",
+      "userId": "b1d930f6-c8a7-4b8a-a46a-4c326a82fb51",
+      "round": 2,
+      "value": 3
+    },
+    {
+      "id": "c7c80b42-b432-4684-bf58-6f1da2778208",
+      "userId": "4d79746c-7734-4d4f-bd8a-8066a75db896",
+      "round": 3,
+      "value": 5
+    },
+    {
+      "id": "f3a448ad-2534-42ca-b1c9-77127193ada1",
+      "userId": "4b212b4e-244b-42db-b72b-8f7e83960371",
       "round": 3,
       "value": 0
     },
     {
-      "id": "1bc2e782-aebb-4364-af6e-e7d4c167caf5",
-      "userId": "8e56c324-1683-48de-88bf-15cfccd213f7",
+      "id": "c4f28db9-3ef0-4394-9755-b14f19253095",
+      "userId": "4674e969-00de-45d5-8a62-449db9d717ff",
       "round": 3,
-      "value": 7
+      "value": 0
+    },
+    {
+      "id": "7a3485c6-80a8-4794-911c-939213d57289",
+      "userId": "b1d930f6-c8a7-4b8a-a46a-4c326a82fb51",
+      "round": 3,
+      "value": 0
     }
   ],
   "gameState": {
