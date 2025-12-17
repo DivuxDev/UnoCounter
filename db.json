@@ -1,12 +1,6 @@
 {
   "players": [
     {
-      "name": "test",
-      "id": "4d79746c-7734-4d4f-bd8a-8066a75db896",
-      "initials": "T",
-      "color": "#9f3ad7"
-    },
-    {
       "name": "pedro",
       "id": "4b212b4e-244b-42db-b72b-8f7e83960371",
       "initials": "P",
