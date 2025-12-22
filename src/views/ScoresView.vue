@@ -88,8 +88,8 @@ const resetGame = async () => {
 .player-list {
     border: 1px solid var(--color-bg-3);
     border-radius: 15px;
-    min-height: 65vh;
-    height: 65vh;
+    min-height: 60vh;
+    height: 60vh;
     list-style: none;
     padding: 15px;
     margin: 0;

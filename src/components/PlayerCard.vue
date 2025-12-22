@@ -1,5 +1,5 @@
 <template>
-    <div class="player-card">
+    <div class="player-card" :style="{ borderLeft: `5px solid ${player.color}` }">
         <section class="d-flex align-center ga-2 w-100" >
             <v-avatar :style="{ backgroundColor: player.color }">
                 <span class="text-h6">{{ player.initials }}</span>
@@ -44,7 +44,7 @@
                 variant="plain"
                 density="compact"
                 icon="mdi-trash-can-outline"
-                color="red"
+                color="black"
                 @click="deleteUser"
             ></v-btn>
             <v-btn
@@ -99,6 +99,7 @@ function cancelEdit() {
     isEditing.value = false;
     editedName.value = props.player.name;
 }
+
 </script>
 
 <style lang="css" scoped>
@@ -111,6 +112,7 @@ function cancelEdit() {
     border-radius: 8px;
     margin-bottom: 0.5rem;
     background-color: #fafafa;
+    
 }
 
 .player-name{

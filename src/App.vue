@@ -38,7 +38,7 @@ html, body, #app, .v-application {
   flex-direction: column;
   height: 100vh; /* 🔸 ocupa toda la pantalla */
   width: 100vw;
-  background-color: var(--main-color-bg);
+  background-color: #F8FAFC;
   overflow: hidden; /* 🔸 nada se desborda */
 }
 

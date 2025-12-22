@@ -1,61 +1,153 @@
 <template>
-    <div class="navbar parent">
-        <div class="div1">
-            <v-btn v-if="commonStore.hasGoBack" icon="mdi-arrow-left" variant="text" @click="goHome()"></v-btn>
-            <v-btn v-if="commonStore.hasMenu" icon="mdi-menu" variant="text" @click="openMenu()"></v-btn>
+  <header class="navbar">
+      <div class="title" @click="goHome">
+        <div >
+          <span class="uno-red">U</span>
+          <span class="uno-yellow">N</span>
+          <span class="uno-green">O</span>
+          <span class="tracker">Tracker</span>
+        </div>
 
-        </div>
-        <div class="middle" @click="goHome()" style="cursor: pointer;">
-            <h3>
-                {{ commonStore.navbarTitle === '' ? 'Uno Counter' : commonStore.navbarTitle }}
-            </h3>
-        </div>
-        <div class="div3">
+      </div>
 
-        </div>
-    </div>
+
+    <nav class="tabs">
+      <a
+        v-for="tab in tabs"
+        :key="tab.route"
+        href="#"
+        class="tab"
+        :class="{ active: isActive(tab.route) }"
+        @click.prevent="router.push(tab.route)"
+      >
+        <span class="material-symbols-outlined tab-icon">
+         <v-icon size="small" :color="(isActive(tab.route) ? 'green' : 'grey')" :icon=tab.icon></v-icon>
+        </span>
+         
+        <span class="tab-label">{{ tab.label }}</span>
+      </a>
+    </nav>
+  </header>
 </template>
 <script lang="ts" setup>
-import { useRouter } from 'vue-router'
-import { useCommonStore } from '@/stores/Common';
-const commonStore = useCommonStore();
+import { useRouter, useRoute } from 'vue-router'
+import { useCommonStore } from '@/stores/Common'
 
-const router = useRouter();
+const router = useRouter()
+const route = useRoute()
+const commonStore = useCommonStore()
+
 function goHome() {
-    router.push('/')
+  router.push('/')
 }
 
-function openMenu() {
-    commonStore.changeSidebarVisibility();
-}
 
+const tabs = [
+  { label: 'Inicio', route: '/', icon: 'mdi-home' },
+  { label: 'Jugadores', route: '/players', icon: 'mdi-account' },
+  { label: 'Puntuaciones', route: '/scores', icon: 'mdi-counter' },
+  { label: 'resultados', route: '/results', icon: 'mdi-chart-bar' }
+]
+
+function isActive(path: string) {
+  return route.path === path
+}
 </script>
-
-<style lang="css" scoped>
+<style scoped>
 .navbar {
-    --navbar-height: 56px;
-
-    height: var(--navbar-height);
-    padding: 0 0.5rem; 
-    z-index: 1300; 
-    background-color: #FEFFFE  ;
-    border-bottom: 1px solid var(--color-bg-3);
-}
-.parent {
-display: grid;
-grid-template-columns: 0.2fr 1fr 0.2fr;
-grid-template-rows: 1fr;
-grid-column-gap: 0px;
-grid-row-gap: 0px;
+  position: sticky;
+  top: 0;
+  z-index: 1300;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid white;
 }
 
-.div1 { grid-area: 1 / 1 / 2 / 2; }
 
-.div3 { grid-area: 1 / 3 / 2 / 4; }
-.middle {
-    grid-area: 1 / 2 / 2 / 3;
-    display: flex;
-    justify-content: center;
-    align-self: center;
+.title {
+    width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 800;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.75rem 0.75rem 0.25rem;
+}
+
+.tracker {
+  margin-left: 0.25rem;
+  color: var(--color-text-secondary);
+}
+
+.custom-title {
+  font-weight: 800;
+}
+
+/* ===== UNO COLORS ===== */
+.uno-red {
+  color: #ff5555;
+}
+.uno-yellow {
+  color: #ffaa00;
+}
+.uno-green {
+  color: var(--color-primary);
+}
+
+/* ===== ICON BUTTON ===== */
+.icon-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+}
+
+/* ===== TABS ===== */
+.tabs {
+  display: flex;
+  overflow-x: auto;
+}
+
+.tab {
+  flex: 1;
+  min-width: 80px;
+  padding: 0.75rem 0.25rem;
+  text-align: center;
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.tab:hover {
+  color: var(--color-text-secondary);
+}
+
+.tab.active {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+.tab-icon {
+  display: block;
+  font-size: 24px;
+  margin-bottom: 0.125rem;
+}
+
+.tab-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Hide scrollbar */
+.tabs::-webkit-scrollbar {
+  display: none;
+}
+.tabs {
+  scrollbar-width: none;
 }
 </style>

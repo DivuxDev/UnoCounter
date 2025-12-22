@@ -43,7 +43,6 @@
 
         </div>
 
-        <!-- Progresión de Puntuaciones -->
         <span class="text-h6">Progresión de Puntuaciones</span>
         <v-card class="chart-card" elevation="4">
 
@@ -80,7 +79,6 @@ let chartInstance: Chart | null = null;
 const previousRanking = ref<Record<string, number>>({});
 
 const players = computed(() => counterStore.players);
-const round = computed(() => counterStore.round);
 
 const sortedPlayers = computed(() => {
     return [...players.value].sort((a, b) => (b.totalScore || 0) - (a.totalScore || 0));
@@ -90,7 +88,6 @@ const currentLeader = computed(() => sortedPlayers.value[0]);
 
 
 
-// Función para obtener el cambio de posición
 const getPositionChange = (playerId: string, currentIndex: number): 'up' | 'down' | null => {
     const previousIndex = previousRanking.value[playerId];
     if (previousIndex === undefined) return null;
@@ -99,26 +96,21 @@ const getPositionChange = (playerId: string, currentIndex: number): 'up' | 'down
     return null;
 };
 
-// Función para obtener el color del jugador
 const getPlayerColor = (playerId: string): string => {
     const player = players.value.find(p => p.id === playerId);
     return player?.color || '#000000';
 };
 
-// Crear el gráfico de progresión
 const createChart = () => {
     if (!chartCanvas.value) return;
 
-    // Destruir el gráfico anterior si existe
     if (chartInstance) {
         chartInstance.destroy();
     }
 
-    // Obtener los datos agrupados por ronda
     const maxRound = Math.max(...counterStore.scores.map(s => s.round), 0);
     const rounds = Array.from({ length: maxRound + 1 }, (_, i) => `R${i + 1}`);
 
-    // Preparar datos para cada jugador
     const datasets = sortedPlayers.value.map(player => {
         const data = [];
         let cumulativeScore = 0;
@@ -160,8 +152,8 @@ const createChart = () => {
                         generateLabels(chart) {
                             return chart.data.datasets.map((dataset, i) => ({
                                 text: dataset.label || '',
-                                fillStyle: String(dataset.borderColor), // Cast to string
-                                strokeStyle: String(dataset.borderColor), // Cast to string
+                                fillStyle: String(dataset.borderColor),
+                                strokeStyle: String(dataset.borderColor),
                                 fontColor: '#ffffff',
                                 lineWidth: 2,
                                 hidden: !chart.isDatasetVisible(i),
@@ -174,14 +166,28 @@ const createChart = () => {
                 tooltip: {
                     mode: 'index',
                     intersect: false,
+                    titleColor: '#ffffff',
+                    bodyColor: '#ffffff',
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
                 },
-
             },
             scales: {
                 y: {
                     beginAtZero: true,
                     ticks: {
+                        color: '#ffffff',
                         stepSize: 50,
+                    },
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.1)',
+                    },
+                },
+                x: {
+                    ticks: {
+                        color: '#ffffff',
+                    },
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.1)',
                     },
                 },
             },
@@ -194,6 +200,7 @@ const createChart = () => {
         },
         plugins: [],
     });
+    
 };
 
 // Actualizar ranking anterior sortPlayers
@@ -215,8 +222,6 @@ watch(() => [counterStore.scores, counterStore.players], () => {
     createChart();
 }, { deep: true });
 
-// Variables de estadísticas adicionales
-const additionalStats = computed(() => players.value.length > 0);
 </script>
 
 <style lang="scss" scoped>
@@ -308,9 +313,7 @@ const additionalStats = computed(() => players.value.length > 0);
 
 .chart-card {
     background-color: var(--color-bg-2);
+    
 
-    :deep(canvas) {
-        max-height: 400px;
-    }
 }
 </style>

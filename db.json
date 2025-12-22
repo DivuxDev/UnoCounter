@@ -4,7 +4,9 @@
       "name": "pedro",
       "id": "4b212b4e-244b-42db-b72b-8f7e83960371",
       "initials": "P",
-      "color": "#d55992"
+      "color": "#d55992",
+      "totalScore": 28,
+      "score": 0
     },
     {
       "name": "pablo",

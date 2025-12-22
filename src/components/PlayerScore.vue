@@ -1,5 +1,5 @@
 <template>
-    <div class="player-card">
+    <div class="player-card" :style="{ borderLeft: `5px solid ${player.color}` }">
         <section class="d-flex align-center ga-2 w-100">
             <v-avatar :style="{ backgroundColor: player.color }">
                 <span class="text-h5">{{ player.initials }}</span>
@@ -8,7 +8,7 @@
             <div class="player-name">
                 
                     <span class="title">{{ player.name }}</span>
-                    <span class="subtitle">Puntuación total: {{ player.totalScore }}</span>
+                    <span class="subtitle">Total: {{ player.totalScore }}</span>
                 
             </div>
         </section>
@@ -71,7 +71,7 @@ const playerScore = computed({
 }
 
 .score-section {
-    width: 63%;
+    width: 90%;
     display: flex;
     align-items: center;
 }
